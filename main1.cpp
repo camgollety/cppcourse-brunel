@@ -1,37 +1,33 @@
-#include <iostream>
-#include "NEURON.CC"
+#include "network.hpp"
+
+using namespace std; 
 
 int main () {
-	Neuron n1; 
-	double Tstart(0.0);
-	double Tstop(0.0);
-	double simtime(Tstart);
-	double a(0.0);
-	double b(0.0);
-	double Iext(0.0); 
 	
-	cout << "How long do you want the simulation to last? " << endl;
-	cin >> Tstop; 
+	int i_start(1000); ///start the step current
+	int i_stop(4000); ///stop the step current 
+	int Tstop(4000); ///total simulation time
+	//double simtime(Tstart);
+	double I_ext(1.01); ///amplitude of current 
 	
-	cout << "What is the time interval (a,b) for the external current? " << endl; 
-	cin >> a;
-	cin >> b;
+	Network n;	
 	
-	cout << "What is the value for the external current? " << endl; 
-	cin >> Iext; 
+	n.addNeuron(); 
+	n.addNeuron();
 	
-	while (simtime < Tstop) 
+	n.connect(0, 1);
+	n.connect(1, 0);
+	
+for (int t(0); t<Tstop; ++t)
+{
+	if(t>= i_start and t<i_stop)
 	{
-		if( simtime>a and simtime<b) 
-		{
-			n1.update(simtime, Iext);
-			
-		} else {
-			n1.update(simtime, 0.0);
-		}
-		simtime += h;
+		n.update(I_ext);
 	}
-	
+	else {
+		n.update(0.0);
+	}
+}
 	return 0;
 }
 

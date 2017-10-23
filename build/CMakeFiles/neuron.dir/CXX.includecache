@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/main1.cpp
+network.hpp
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/network.hpp
+
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/network.cc
+iostream
+-
+cmath
+-
+vector
+-
+cassert
+-
+network.hpp
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/network.hpp
+
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/network.hpp
+neuron.hpp
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/neuron.hpp
+
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/neuron.cc
+neuron.hpp
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/neuron.hpp
+
+/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/neuron.hpp
+iostream
+-
+cmath
+-
+vector
+-
+array
+-
+
