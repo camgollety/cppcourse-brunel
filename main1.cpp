@@ -22,10 +22,10 @@ for (int t(0); t<Tstop; ++t)
 {
 	if(t>= i_start and t<i_stop)
 	{
-		n.update(I_ext);
+		n.update(I_ext, t); 
 	}
 	else {
-		n.update(0.0);
+		n.update(0.0, t);
 	}
 }
 	return 0;

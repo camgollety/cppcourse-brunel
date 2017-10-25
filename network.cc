@@ -17,21 +17,21 @@ Network::~Network() {
 	}
 }
 
-void Network::update(double I) 
+void Network::update(double I, int steps) 
 {
 	for (size_t i(0); i< neurons.size(); ++i) 
 	{
 		neurons[i]->setIext(I);
-		neurons[i]->update();
+		neurons[i]->update(steps);		
 		
 		if (neurons[i]->spiked()) {
-			cout << "The neuron spiked at : " << getNeuronClock(i)*h << "ms: " << neurons[i]->getMemPot() << "mV"<< endl; 
+			cout << "The neuron spiked at : " << steps*h << "ms: " << neurons[i]->getMemPot() << "mV"<< endl; 
 			
 			///transmission of the spike to other neurons 
 			for(auto connected: connexions[i]) ///we go through the connexions of neuron i to transmit the signal 
-			{ neurons[connected]->receive(J, delay); }
+			{ neurons[connected]->receive(J, steps); 
+			}
 		}
-		
 	}
 }
 

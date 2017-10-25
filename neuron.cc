@@ -48,18 +48,22 @@ void Neuron::setIext(double i)
 	I_ext=i;
 }
 
-void Neuron::update() 
+void Neuron::update(int steps) 
 {	
+	//mettre les lignes de random device 
+	
 	if (isRefractory()) 
 	{
 		memPot_=0.0;
 	}
 	else {
-		memPot_ = c1*memPot_+ I_ext*c2 + buffer[clock_%buffer.size()];
+		memPot_ = c1*memPot_+ I_ext*c2 + buffer[steps%buffer.size()];
+		buffer[clock_%buffer.size()]=0.0;
 		if(spiked()) 
 		{
-			timeSpikes_.push_back(clock_);
+			timeSpikes_.push_back(steps);
 			++numSpikes_;
+			isRefractory();
 		}
 	}
 	++clock_;
@@ -72,7 +76,7 @@ bool Neuron::spiked()
 
 bool Neuron::isRefractory() const
 {
-	return (!historicalPot_.empty() and clock_ - timeSpikes_[timeSpikes_.size()] < refTime); 
+	return (!timeSpikes_.empty() and clock_ - timeSpikes_[timeSpikes_.size()-1] < refTime); 
 }
 
 double Neuron::getLastSpike() const {
@@ -86,13 +90,12 @@ double Neuron::getLastSpike() const {
 	}
 } /** @return the value of the membrane for the last spike **/
 
-void Neuron::receive(double J, int d) 
+void Neuron::receive(double J, int steps) 
 {
-	if (!isRefractory())
-	{
-		buffer[(clock_+d)%buffer.size()] += J;
-	}
+
+		buffer[(steps+delay_steps_)%buffer.size()] += J; 
+	
 } /**the neuron receives a spike with weight J 
-@éJ: weight of the spike
+@J: weight of the spike
 @d: delay of the spike **/ 
 	

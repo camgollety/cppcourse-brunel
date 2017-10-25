@@ -23,7 +23,7 @@ class Network {
 	
 	int getNeuronClock(int i) const;
 	
-	void update(double I);
+	void update(double I, int steps);
 };
 
 #endif

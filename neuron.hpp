@@ -46,7 +46,7 @@ class Neuron {
 	int getTimesOccured() const;
 	long getClock() const; 
 	double getIext() const;
-	void receive(double J, int d); 
+	void receive(double J, int steps); 
 	
 	bool spiked(); 
 	bool isRefractory() const; 
@@ -54,7 +54,7 @@ class Neuron {
 	void setMemPot(double x);
 	void setIext(double i);
 	
-	void update(); 
+	void update(int steps); 
 	
 };
 

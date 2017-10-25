@@ -48,10 +48,10 @@ RM = /Applications/CMake.app/Contents/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron"
+CMAKE_SOURCE_DIR = /Users/camillegollety/Desktop/projet/Neuron
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/build"
+CMAKE_BINARY_DIR = /Users/camillegollety/Desktop/projet/Neuron/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,11 +78,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/Applications/CMake.app/Contents/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/build/CMakeFiles" "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/build/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/camillegollety/Desktop/projet/Neuron/build/CMakeFiles /Users/camillegollety/Desktop/projet/Neuron/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/camillegollety/Desktop/projet/Neuron/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,6 +122,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named neuron_unittest
+
+# Build rule for target.
+neuron_unittest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 neuron_unittest
+.PHONY : neuron_unittest
+
+# fast build rule for target.
+neuron_unittest/fast:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/build
+.PHONY : neuron_unittest/fast
+
+#=============================================================================
 # Target rules for targets named neuron
 
 # Build rule for target.
@@ -122,6 +146,32 @@ neuron: cmake_check_build_system
 neuron/fast:
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/build
 .PHONY : neuron/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) -f googletest/CMakeFiles/gtest_main.dir/build.make googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f googletest/CMakeFiles/gtest.dir/build.make googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
 
 main1.o: main1.cpp.o
 
@@ -183,6 +233,7 @@ neuron.o: neuron.cc.o
 
 # target to build an object file
 neuron.cc.o:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron.cc.o
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/neuron.cc.o
 .PHONY : neuron.cc.o
 
@@ -192,6 +243,7 @@ neuron.i: neuron.cc.i
 
 # target to preprocess a source file
 neuron.cc.i:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron.cc.i
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/neuron.cc.i
 .PHONY : neuron.cc.i
 
@@ -201,8 +253,36 @@ neuron.s: neuron.cc.s
 
 # target to generate assembly for a file
 neuron.cc.s:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron.cc.s
 	$(MAKE) -f CMakeFiles/neuron.dir/build.make CMakeFiles/neuron.dir/neuron.cc.s
 .PHONY : neuron.cc.s
+
+neuron_unittest.o: neuron_unittest.cpp.o
+
+.PHONY : neuron_unittest.o
+
+# target to build an object file
+neuron_unittest.cpp.o:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron_unittest.cpp.o
+.PHONY : neuron_unittest.cpp.o
+
+neuron_unittest.i: neuron_unittest.cpp.i
+
+.PHONY : neuron_unittest.i
+
+# target to preprocess a source file
+neuron_unittest.cpp.i:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron_unittest.cpp.i
+.PHONY : neuron_unittest.cpp.i
+
+neuron_unittest.s: neuron_unittest.cpp.s
+
+.PHONY : neuron_unittest.s
+
+# target to generate assembly for a file
+neuron_unittest.cpp.s:
+	$(MAKE) -f CMakeFiles/neuron_unittest.dir/build.make CMakeFiles/neuron_unittest.dir/neuron_unittest.cpp.s
+.PHONY : neuron_unittest.cpp.s
 
 # Help Target
 help:
@@ -212,7 +292,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... neuron_unittest"
 	@echo "... neuron"
+	@echo "... gtest_main"
+	@echo "... gtest"
 	@echo "... main1.o"
 	@echo "... main1.i"
 	@echo "... main1.s"
@@ -222,6 +306,9 @@ help:
 	@echo "... neuron.o"
 	@echo "... neuron.i"
 	@echo "... neuron.s"
+	@echo "... neuron_unittest.o"
+	@echo "... neuron_unittest.i"
+	@echo "... neuron_unittest.s"
 .PHONY : help
 
 

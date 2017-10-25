@@ -1,4 +1,4 @@
-# Install script for directory: /Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron
+# Install script for directory: /Users/camillegollety/Desktop/projet/Neuron
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,6 +27,12 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/Users/camillegollety/Desktop/projet/Neuron/build/googletest/cmake_install.cmake")
+
+endif()
+
 if(CMAKE_INSTALL_COMPONENT)
   set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
 else()
@@ -35,5 +41,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/camillegollety/Desktop/EPFL-Semestre 3/Informatique/Neuron/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/camillegollety/Desktop/projet/Neuron/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
