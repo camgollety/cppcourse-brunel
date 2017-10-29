@@ -5,20 +5,7 @@
 #include <cmath> 
 #include <vector>
 #include <array>
-
-using namespace std;
-
-
-
-const double tau = 20;   ///membrane time constant 
-const int C=1;   ///membrane capacity
-const double R=1;   ///membrane resistance
-const double h=0.1;   ///integration stepsize
-const int V_thr=20;   ///spike threshold
-const int V_reset = 10; 
-const double refTime =20;   ///refractory time
-const double J =10; 
-const int delay = 15; 
+#include "Constants.hpp"
 
 class Neuron {
 	
@@ -28,13 +15,15 @@ class Neuron {
 	double c2;   ///constant of integration1
 	double memPot_;   ///membrane potential 
 	int numSpikes_;   ///number of spikes
-	vector<double> historicalPot_;   ///stores all the membrane potentials 
-	vector<double> timeSpikes_;   ///stores the spikes time 
+	std::vector<double> historicalPot_;   ///stores all the membrane potentials 
+	std::vector<double> timeSpikes_;   ///stores the spikes time 
 	long clock_;   ///internal clock for a neuron 
 	double I_ext;   ///external current 
 	double delay_;   ///synaptic delay in ms
 	unsigned long delay_steps_;   ///delay in steps
-	vector<double> buffer;   ///buffer for spikes 
+	std::vector<double> buffer_;   ///buffer for spikes 
+	
+	bool isExcitatory; ///checks is the neuron is excitatory(true) or not(false)
 	
 	public: 
 	
@@ -46,6 +35,8 @@ class Neuron {
 	int getTimesOccured() const;
 	long getClock() const; 
 	double getIext() const;
+	bool getIsExcitatory() const; 
+	
 	void receive(double J, int steps); 
 	
 	bool spiked(); 
@@ -53,8 +44,11 @@ class Neuron {
 	
 	void setMemPot(double x);
 	void setIext(double i);
+	void setExcitatory(bool b);
 	
 	void update(int steps); 
+	
+	void addConnetion(int i); ///add a connexion to the neuron 
 	
 };
 

@@ -6,17 +6,10 @@ int main () {
 	
 	int i_start(1000); ///start the step current
 	int i_stop(4000); ///stop the step current 
-	int Tstop(4000); ///total simulation time
-	//double simtime(Tstart);
+	int Tstop(5000); ///total simulation time
 	double I_ext(1.01); ///amplitude of current 
 	
 	Network n;	
-	
-	n.addNeuron(); 
-	n.addNeuron();
-	
-	n.connect(0, 1);
-	n.connect(1, 0);
 	
 for (int t(0); t<Tstop; ++t)
 {

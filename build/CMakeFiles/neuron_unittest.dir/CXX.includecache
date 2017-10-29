@@ -278,6 +278,10 @@ cxxabi.h
 acxx_demangle.h
 -
 
+/Users/camillegollety/Desktop/projet/Neuron/Constants.hpp
+cmath
+-
+
 /Users/camillegollety/Desktop/projet/Neuron/neuron.cc
 neuron.hpp
 /Users/camillegollety/Desktop/projet/Neuron/neuron.hpp
@@ -291,6 +295,8 @@ vector
 -
 array
 -
+Constants.hpp
+/Users/camillegollety/Desktop/projet/Neuron/Constants.hpp
 
 /Users/camillegollety/Desktop/projet/Neuron/neuron_unittest.cpp
 iostream

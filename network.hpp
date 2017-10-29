@@ -2,26 +2,25 @@
 #define NETWORK_H
 
 #include "neuron.hpp"
-
-using namespace std;
-
-
+#include "Constants.hpp"
+#include <random>
 
 class Network {
 	
 	private: 
 	
-	vector<Neuron*> neurons; 
-	vector<vector<unsigned int>> connexions; ///connexions between neurons 
+	std::array<Neuron*, Const::NB_NEURONS> neurons; ///array of all the neurons of the network 
+	std::array<std::array<int, Const::NB_NEURONS>, Const::NB_NEURONS> connections_; ///matrix of connections
+	double backGroundNoise_; ///additional potential from the rest of the brain 
+	
 	
 	public: 
 	
 	Network(); 
-	virtual ~Network();
-	void addNeuron(); 
-	void connect(unsigned int n1, unsigned int n2); ///x/= y et ils existent et et x et y plus petits que la taille du tableau neurones 
+	~Network();
 	
 	int getNeuronClock(int i) const;
+	double getBackGroundNoise() const; ///returns the value of Vext from the rest of the brain 
 	
 	void update(double I, int steps);
 };
