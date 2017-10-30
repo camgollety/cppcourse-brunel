@@ -15,9 +15,12 @@ Neuron::Neuron():
 	c1 = exp(-Const::H/Const::TAU);
 	c2=(Const::TAU/Const::C)*(1.0-c1);
 	delay_steps_=static_cast<unsigned long>(ceil(delay_/Const::H));
-	buffer_.resize(delay_steps_+1, 0.0);
 	
 	buffer_ = {}; ///initilisation of the buffer
+	for (size_t i(0); i<delay_steps_+1; ++i) 
+	{
+		buffer_.push_back(0.0); 
+	}
 	
 	connections_ = {};
 	

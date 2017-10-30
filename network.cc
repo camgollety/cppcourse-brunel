@@ -27,7 +27,6 @@ Network::Network()
 	
 	for (size_t n=0; n<Const::NB_NEURONS; ++n) 
 	{
-		cout << "Etape " << n << " /12500" << endl;
 		for (size_t i=0; i<Const::C_EXCITATORY; ++i) 
 		{
 			auto source = excitatory(gen);
@@ -48,11 +47,14 @@ void Network::update(double I, int steps)
 {
 	for (size_t i(0); i< neurons.size(); ++i) 
 	{
+		int spikes(0); 
+		
 		neurons[i].setIext(I);
 		neurons[i].update(steps);		
 		
 		if (neurons[i].spiked()) {
-			cout << "The neuron spiked at : " << steps*Const::H << "ms: " << neurons[i].getMemPot() << "mV"<< endl; 
+			cout << "The neuron " << i << " spiked at : " << steps*Const::H << "ms: " << neurons[i].getMemPot() << "mV"<< endl; 
+			++spikes; 
 			
 			double J = i < Const::NB_EXCITATORY ? Const::J_EXCITATORY : Const::J_INHIBITORY;
 			
@@ -61,9 +63,10 @@ void Network::update(double I, int steps)
 				neurons[connection].receive(J, steps);
 			}
 		}
+		numberSpikes_.push_back(spikes); 
+		spikes =0; 
 	}
 }
-
 
 int Network::getNeuronClock(int i) const 
 {

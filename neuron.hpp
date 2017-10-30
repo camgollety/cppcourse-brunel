@@ -6,7 +6,7 @@
 #include <vector>
 #include <array>
 #include <random>
-#include "Constants.hpp"
+#include "constants.hpp"
 
 class Neuron {
 	
