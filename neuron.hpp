@@ -5,6 +5,7 @@
 #include <cmath> 
 #include <vector>
 #include <array>
+#include <random>
 #include "Constants.hpp"
 
 class Neuron {
@@ -25,6 +26,8 @@ class Neuron {
 	
 	bool isExcitatory; ///checks is the neuron is excitatory(true) or not(false)
 	
+	std::vector<int> connections_; ///cibles de mon neurone 
+	
 	public: 
 	
 	Neuron(); 
@@ -35,7 +38,8 @@ class Neuron {
 	int getTimesOccured() const;
 	long getClock() const; 
 	double getIext() const;
-	bool getIsExcitatory() const; 
+	bool getIsExcitatory() const;
+	std::vector<int> getConnection() const; 
 	
 	void receive(double J, int steps); 
 	
@@ -48,7 +52,7 @@ class Neuron {
 	
 	void update(int steps); 
 	
-	void addConnetion(int i); ///add a connexion to the neuron 
+	void addConnection(int i); ///add a connexion to the neuron 
 	
 };
 

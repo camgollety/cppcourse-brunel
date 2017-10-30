@@ -88,5 +88,5 @@ TEST (NeuronTest, StandaloneSimulation) {
 	neuron.update(i); }
 	
 	EXPECT_EQ(4, neuron.getNumSpikes()); 
-}
+} 
 

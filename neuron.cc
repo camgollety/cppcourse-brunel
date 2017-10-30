@@ -19,6 +19,8 @@ Neuron::Neuron():
 	
 	buffer_ = {}; ///initilisation of the buffer
 	
+	connections_ = {};
+	
 }
 
 double Neuron::getMemPot() const 
@@ -46,6 +48,10 @@ bool Neuron::getIsExcitatory() const
 	return isExcitatory;
 } /** @return the value of the boolean isExcitatory **/
 
+vector<int> Neuron::getConnection() const 
+{
+	return connections_; 
+}
 
 void Neuron::setMemPot(double x) 
 {
@@ -62,15 +68,21 @@ void Neuron::setExcitatory(bool b)
 	isExcitatory=b;
 } 
 
+
 void Neuron::update(int steps) 
-{	
-	
+{		
 	if (isRefractory()) 
 	{
 		memPot_=0.0;
 	}
 	else {
-		memPot_ = c1*memPot_+ I_ext*c2 + buffer_[steps%buffer_.size()];
+		///creating a random noise that is a current from the rest of the brain 
+		///static: variable that exists only once 
+		static random_device rd; ///creation of a random device 
+		static mt19937 gen(rd()); ///initializing random generator
+		static poisson_distribution<> noise(Const::V_EXT * Const::C_EXCITATORY * Const::H * Const::J_EXCITATORY); ///initializing a poisson distribution
+		
+		memPot_ = c1*memPot_+ I_ext*c2 + buffer_[steps%buffer_.size()]+noise(gen);
 		buffer_[clock_%buffer_.size()]=0.0;
 		if(spiked()) 
 		{
@@ -79,7 +91,7 @@ void Neuron::update(int steps)
 			isRefractory();
 		}
 	}
-	++clock_;
+	++clock_; 
 } ///update the state of the neuron from state t to t+h, update the value of membrane potential 
 
 bool Neuron::spiked()
@@ -110,6 +122,12 @@ void Neuron::receive(double J, int steps)
 	
 } /**the neuron receives a spike with weight J 
 @J: weight of the spike **/ 
+
+void Neuron::addConnection(int i) {
+	connections_.push_back(i);
+	
+}
+
 
 
 

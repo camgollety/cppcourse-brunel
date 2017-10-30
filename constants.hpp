@@ -30,6 +30,7 @@ namespace Const {
     
     const double J_EXCITATORY = 0.1; 	///weight of excitment 		
 	const double J_INHIBITORY = -RATIO * J_EXCITATORY;   ///weight of inhibition 
+	const double G = J_INHIBITORY/J_EXCITATORY; 
     
 
 	constexpr double E = 0.1;    ///constant epsilon 
