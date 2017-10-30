@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/camillegollety/Desktop/projet/Neuron/Constants.hpp
+/Users/camillegollety/Desktop/projet/Neuron/constants.hpp
 cmath
 -
 
@@ -29,8 +29,8 @@ network.hpp
 /Users/camillegollety/Desktop/projet/Neuron/network.hpp
 neuron.hpp
 /Users/camillegollety/Desktop/projet/Neuron/neuron.hpp
-Constants.hpp
-/Users/camillegollety/Desktop/projet/Neuron/Constants.hpp
+constants.hpp
+/Users/camillegollety/Desktop/projet/Neuron/constants.hpp
 random
 -
 
@@ -49,6 +49,6 @@ array
 -
 random
 -
-Constants.hpp
-/Users/camillegollety/Desktop/projet/Neuron/Constants.hpp
+constants.hpp
+/Users/camillegollety/Desktop/projet/Neuron/constants.hpp
 
