@@ -26,7 +26,7 @@ class Neuron {
 	
 	bool isExcitatory; ///checks is the neuron is excitatory(true) or not(false)
 	
-	std::vector<int> connections_; ///cibles de mon neurone 
+	std::vector<int> connections_; ///connections of a neuron that are its targets, the int represents a neuron  
 	
 	public: 
 	
@@ -40,6 +40,7 @@ class Neuron {
 	double getIext() const;
 	bool getIsExcitatory() const;
 	std::vector<int> getConnection() const; 
+	std::vector<double> getSpikesTime() const;
 	
 	void receive(double J, int steps); 
 	
@@ -51,6 +52,7 @@ class Neuron {
 	void setExcitatory(bool b);
 	
 	void update(int steps); 
+	void updateNoNoise(int steps); ///this update method is for the google tests that require no background noise
 	
 	void addConnection(int i); ///add a connexion to the neuron 
 	

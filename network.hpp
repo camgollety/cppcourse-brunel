@@ -4,6 +4,11 @@
 #include "neuron.hpp"
 #include "constants.hpp"
 #include <random>
+#include <fstream>
+ 
+ /*! @class Network 
+ * @brief Network of neurons connected and interracting together
+ */
 
 class Network {
 	
@@ -14,12 +19,13 @@ class Network {
 	
 	public: 
 	
-	Network(); 
-	~Network() = default;
+	Network();    /**< Constructor*/
+	~Network() = default;    /**< Destructor*/
 	
 	int getNeuronClock(int i) const;
 	
 	void update(double I, int steps);
+	void save(); 
 };
 
 #endif

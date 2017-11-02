@@ -22,7 +22,7 @@ Neuron::Neuron():
 		buffer_.push_back(0.0); 
 	}
 	
-	connections_ = {};
+	connections_ = {};  ///initilisation of the connections of a neuron
 	
 }
 
@@ -54,6 +54,11 @@ bool Neuron::getIsExcitatory() const
 vector<int> Neuron::getConnection() const 
 {
 	return connections_; 
+}
+
+vector<double> Neuron::getSpikesTime() const
+{
+	return timeSpikes_; 
 }
 
 void Neuron::setMemPot(double x) 
@@ -96,6 +101,31 @@ void Neuron::update(int steps)
 	}
 	++clock_; 
 } ///update the state of the neuron from state t to t+h, update the value of membrane potential 
+
+void Neuron::updateNoNoise(int steps) 
+{		
+	if (isRefractory()) 
+	{
+		memPot_=0.0;
+	}
+	else {
+		///creating a random noise that is a current from the rest of the brain 
+		///static: variable that exists only once 
+		static random_device rd; ///creation of a random device 
+		static mt19937 gen(rd()); ///initializing random generator
+		static poisson_distribution<> noise(Const::V_EXT * Const::C_EXCITATORY * Const::H * Const::J_EXCITATORY); ///initializing a poisson distribution
+		
+		memPot_ = c1*memPot_+ I_ext*c2 + buffer_[steps%buffer_.size()];
+		buffer_[clock_%buffer_.size()]=0.0;
+		if(spiked()) 
+		{
+			timeSpikes_.push_back(steps);
+			++numSpikes_;
+			isRefractory();
+		}
+	}
+	++clock_; 
+}
 
 bool Neuron::spiked()
 {

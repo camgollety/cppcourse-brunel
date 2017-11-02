@@ -14,7 +14,7 @@ namespace Const {
 	
 	const int V_THR=20;   ///spike threshold
 	
-	const int V_RESET = 10; 
+	const int V_RESET = 0; 
 
 	const double REFTIME =2;   ///refractory time
 	

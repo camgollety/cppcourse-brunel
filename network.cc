@@ -9,9 +9,7 @@ using namespace std;
 Network::Network() 
 {
 	neurons = {};
-	//connections_={}; 
 	
-
 	/// the first 10 000 neurons are excitatory and the others are inhibitory
 	for (int j=0; j<Const::NB_EXCITATORY; ++j) {
 		neurons[j].setExcitatory(true);
@@ -42,13 +40,12 @@ Network::Network()
 	}
 }
 
-
 void Network::update(double I, int steps) 
 {
+	
+	int spikes(0);
 	for (size_t i(0); i< neurons.size(); ++i) 
-	{
-		int spikes(0); 
-		
+	{	
 		neurons[i].setIext(I);
 		neurons[i].update(steps);		
 		
@@ -63,9 +60,25 @@ void Network::update(double I, int steps)
 				neurons[connection].receive(J, steps);
 			}
 		}
-		numberSpikes_.push_back(spikes); 
-		spikes =0; 
 	}
+	numberSpikes_.push_back(spikes);
+	spikes = 0;
+}
+
+void Network::save() 
+{
+	ofstream out; 
+	out.open("../spikes.gdf");
+	
+	for (long i(0); i<neurons.size(); ++i) 
+	{
+		for (int j(0); j<neurons[i].getSpikesTime().size(); ++j)
+		{
+		out << neurons[i].getSpikesTime()[j] << '\t' << i << '\n'; 
+		}
+	}
+		
+	out.close(); 
 }
 
 int Network::getNeuronClock(int i) const 
