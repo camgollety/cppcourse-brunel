@@ -13,6 +13,10 @@ cmath
 /Users/camillegollety/Desktop/projet/Neuron/main1.cpp
 network.hpp
 /Users/camillegollety/Desktop/projet/Neuron/network.hpp
+fstream
+-
+constants.hpp
+/Users/camillegollety/Desktop/projet/Neuron/constants.hpp
 
 /Users/camillegollety/Desktop/projet/Neuron/network.cc
 iostream
@@ -32,6 +36,8 @@ neuron.hpp
 constants.hpp
 /Users/camillegollety/Desktop/projet/Neuron/constants.hpp
 random
+-
+fstream
 -
 
 /Users/camillegollety/Desktop/projet/Neuron/neuron.cc
