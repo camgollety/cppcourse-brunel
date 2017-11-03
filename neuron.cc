@@ -26,30 +26,32 @@ Neuron::Neuron():
 	
 }
 
+/********************************************** GETTERS **************************************************/
+
 double Neuron::getMemPot() const 
 {
 	return memPot_;
-} /** @return current value of the membrane **/
+} 
 
 double Neuron::getNumSpikes() const
 { 
 	return (!timeSpikes_.empty() and timeSpikes_.size());
-} /** @return number of spikes **/
+} 
 
 long Neuron::getClock() const 
 { 
 	return clock_;
-} /** @return current value of the internal clock of the neuron **/
+} 
 
 double Neuron::getIext() const
 {
 	return I_ext;
-} /** @return the external current **/
+} 
 
 bool Neuron::getIsExcitatory() const
 {
 	return isExcitatory;
-} /** @return the value of the boolean isExcitatory **/
+} 
 
 vector<int> Neuron::getConnection() const 
 {
@@ -60,6 +62,19 @@ vector<double> Neuron::getSpikesTime() const
 {
 	return timeSpikes_; 
 }
+
+double Neuron::getLastSpike() const {
+	if (!historicalPot_.empty()) 
+	{
+		return historicalPot_.back();
+	}
+	else 
+	{
+		return 0;
+	}
+} 
+
+/********************************************** SETTERS ******************************************/
 
 void Neuron::setMemPot(double x) 
 {
@@ -76,6 +91,7 @@ void Neuron::setExcitatory(bool b)
 	isExcitatory=b;
 } 
 
+/********************************************** GEERAL METHODS ******************************************/
 
 void Neuron::update(int steps) 
 {		
@@ -84,11 +100,11 @@ void Neuron::update(int steps)
 		memPot_=0.0;
 	}
 	else {
-		///creating a random noise that is a current from the rest of the brain 
-		///static: variable that exists only once 
-		static random_device rd; ///creation of a random device 
-		static mt19937 gen(rd()); ///initializing random generator
-		static poisson_distribution<> noise(Const::V_EXT * Const::C_EXCITATORY * Const::H * Const::J_EXCITATORY); ///initializing a poisson distribution
+		//creating a random noise that is a current from the rest of the brain 
+		//static: variable that exists only once 
+		static random_device rd; //creation of a random device 
+		static mt19937 gen(rd()); //initializing random generator
+		static poisson_distribution<> noise(Const::V_EXT * Const::C_EXCITATORY * Const::H * Const::J_EXCITATORY); //initializing a poisson distribution
 		
 		memPot_ = c1*memPot_+ I_ext*c2 + buffer_[steps%buffer_.size()]+noise(gen);
 		buffer_[clock_%buffer_.size()]=0.0;
@@ -100,7 +116,7 @@ void Neuron::update(int steps)
 		}
 	}
 	++clock_; 
-} ///update the state of the neuron from state t to t+h, update the value of membrane potential 
+} //update the state of the neuron from state t to t+h, update the value of membrane potential 
 
 void Neuron::updateNoNoise(int steps) 
 {		
@@ -109,10 +125,10 @@ void Neuron::updateNoNoise(int steps)
 		memPot_=0.0;
 	}
 	else {
-		///creating a random noise that is a current from the rest of the brain 
-		///static: variable that exists only once 
-		static random_device rd; ///creation of a random device 
-		static mt19937 gen(rd()); ///initializing random generator
+		//creating a random noise that is a current from the rest of the brain 
+		//static: variable that exists only once 
+		static random_device rd; //creation of a random device 
+		static mt19937 gen(rd()); //initializing random generator
 		static poisson_distribution<> noise(Const::V_EXT * Const::C_EXCITATORY * Const::H * Const::J_EXCITATORY); ///initializing a poisson distribution
 		
 		memPot_ = c1*memPot_+ I_ext*c2 + buffer_[steps%buffer_.size()];
@@ -130,31 +146,19 @@ void Neuron::updateNoNoise(int steps)
 bool Neuron::spiked()
 {
 	return (getMemPot()>= Const::V_THR);
-} /// check if the neuron spiked or not 
+} // check if the neuron spiked or not 
 
 bool Neuron::isRefractory() const
 {
 	return (!timeSpikes_.empty() and clock_ - timeSpikes_[timeSpikes_.size()-1] < Const::REFTIME); 
 }
 
-double Neuron::getLastSpike() const {
-	if (!historicalPot_.empty()) 
-	{
-		return historicalPot_.back();
-	}
-	else 
-	{
-		return 0;
-	}
-} /** @return the value of the membrane for the last spike **/
-
 void Neuron::receive(double J, int steps) 
 {
 
 		buffer_[(steps+delay_steps_)%buffer_.size()] += J; 
 	
-} /**the neuron receives a spike with weight J 
-@J: weight of the spike **/ 
+}
 
 void Neuron::addConnection(int i) {
 	connections_.push_back(i);

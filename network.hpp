@@ -14,17 +14,42 @@ class Network {
 	
 	private: 
 	
-	std::array<Neuron, Const::NB_NEURONS> neurons; ///array of all the neurons of the network 
-	std::vector<int> numberSpikes_;  ///number of spikes for each time step
+	std::array<Neuron, Const::NB_NEURONS> neurons; //! array of all the neurons of the network 
+	std::vector<int> numberSpikes_;  //! number of spikes for each time step
 	
 	public: 
 	
-	Network();    /**< Constructor*/
-	~Network() = default;    /**< Destructor*/
+ /*! 
+ * @brief constructor, create random connections between the neurons of the network
+ */	
+	Network(); 
+	~Network() = default;    //! Destructor
 	
+	
+/****************************************************************************************************************
+ *                                             GETTERS
+ * *************************************************************************************************************/	
+	
+ /*!
+ * @return  the local clock of neuron i
+ * @param i the index of neuron
+ */	
 	int getNeuronClock(int i) const;
 	
+/****************************************************************************************************************
+ *                                             GENERAL METHODS
+ * *************************************************************************************************************/	
+	
+ /*! 
+ * @brief main update function, transmit the spikes, update the attributs of the class
+ * @param I the current
+ * @param steps the duration of the update 
+ */	
 	void update(double I, int steps);
+
+ /*! 
+ * @brief Save spikes time in a file 
+ */	
 	void save(); 
 };
 
