@@ -1,0 +1,105 @@
+\hypertarget{classNetwork}{\section{Network Class Reference}
+\label{classNetwork}\index{Network@{Network}}
+}
+
+
+\hyperlink{classNetwork}{Network} of neurons connected and interracting together.  
+
+
+
+
+{\ttfamily \#include $<$network.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network} ()
+\begin{DoxyCompactList}\small\item\em number of spikes for each time step \end{DoxyCompactList}\item 
+int \hyperlink{classNetwork_ad6a09c57e50ed597ba9d5579b3c60d81}{get\-Neuron\-Clock} (int i) const 
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hyperlink{classNeuron}{Neuron} \hyperlink{classNetwork_a73d0f5b66c50053dee883c0a0bda1ab7}{get\-Neuron} (int i) const 
+\item 
+void \hyperlink{classNetwork_a20f30cc6bb4d205b7b8ea747f2a5f706}{update} (double I, int steps)
+\begin{DoxyCompactList}\small\item\em main update function, transmit the spikes, update the attributs of the class \end{DoxyCompactList}\item 
+\hypertarget{classNetwork_a46d71ec917bea6dbf37ba72415795b58}{void \hyperlink{classNetwork_a46d71ec917bea6dbf37ba72415795b58}{save} ()}\label{classNetwork_a46d71ec917bea6dbf37ba72415795b58}
+
+\begin{DoxyCompactList}\small\item\em Save spikes time in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classNetwork}{Network} of neurons connected and interracting together. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\subsubsection[{Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::\-Network (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}
+
+
+number of spikes for each time step 
+
+constructor, create random connections between the neurons of the network 
+
+\subsection{Member Function Documentation}
+\hypertarget{classNetwork_a73d0f5b66c50053dee883c0a0bda1ab7}{\index{Network@{Network}!get\-Neuron@{get\-Neuron}}
+\index{get\-Neuron@{get\-Neuron}!Network@{Network}}
+\subsubsection[{get\-Neuron}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Neuron} Network\-::get\-Neuron (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_a73d0f5b66c50053dee883c0a0bda1ab7}
+\begin{DoxyReturn}{Returns}
+the neuron i of the list of neurons 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of a neuron \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNetwork_ad6a09c57e50ed597ba9d5579b3c60d81}{\index{Network@{Network}!get\-Neuron\-Clock@{get\-Neuron\-Clock}}
+\index{get\-Neuron\-Clock@{get\-Neuron\-Clock}!Network@{Network}}
+\subsubsection[{get\-Neuron\-Clock}]{\setlength{\rightskip}{0pt plus 5cm}int Network\-::get\-Neuron\-Clock (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_ad6a09c57e50ed597ba9d5579b3c60d81}
+
+
+Destructor. 
+
+\begin{DoxyReturn}{Returns}
+the local clock of neuron i 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em i} & the index of a neuron \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNetwork_a20f30cc6bb4d205b7b8ea747f2a5f706}{\index{Network@{Network}!update@{update}}
+\index{update@{update}!Network@{Network}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::update (
+\begin{DoxyParamCaption}
+\item[{double}]{I, }
+\item[{int}]{steps}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a20f30cc6bb4d205b7b8ea747f2a5f706}
+
+
+main update function, transmit the spikes, update the attributs of the class 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I} & the current \\
+\hline
+{\em steps} & the duration of the update \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+network.\-hpp\item 
+network.\-cc\end{DoxyCompactItemize}
