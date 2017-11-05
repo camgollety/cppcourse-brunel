@@ -35,7 +35,7 @@ double Neuron::getMemPot() const
 
 double Neuron::getNumSpikes() const
 { 
-	return (!timeSpikes_.empty() and timeSpikes_.size());
+	return numSpikes_;
 } 
 
 long Neuron::getClock() const 

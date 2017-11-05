@@ -32,9 +32,15 @@ class Network {
 	
  /*!
  * @return  the local clock of neuron i
- * @param i the index of neuron
+ * @param i the index of a neuron
  */	
 	int getNeuronClock(int i) const;
+
+ /*!
+ * @return  the neuron i of the list of neurons 
+ * @param i the index of a neuron
+ */	
+	Neuron getNeuron(int i) const;
 	
 /****************************************************************************************************************
  *                                             GENERAL METHODS

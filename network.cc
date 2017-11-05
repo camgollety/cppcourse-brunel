@@ -56,8 +56,8 @@ void Network::update(double I, int steps)
 			
 			double J = i < Const::NB_EXCITATORY ? Const::J_EXCITATORY : Const::J_INHIBITORY;
 			
-			//transmission of the spike to other neurons    ///we go through the connexions of neuron i to transmit the signal to the targets
-			for(auto connection: neurons[i].getConnection()) {
+			//transmission of the spike to other neurons    
+			for(auto connection: neurons[i].getConnection()) {  //we go through the connexions of neuron i to transmit the signal to the targets
 				neurons[connection].receive(J, steps);
 			}
 		}
@@ -85,6 +85,11 @@ void Network::save()
 int Network::getNeuronClock(int i) const 
 {
 	return neurons[i].getClock(); 
+}
+
+Neuron Network::getNeuron(int i) const 
+{
+	return neurons[i];
 }
 
 	
